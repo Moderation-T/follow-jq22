@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		body {
+			background-color: #666;
+		}
+
+		.box {
+			height: 630px;
+			width: 940px;
+			margin: 50px auto;
+		}
+
+		.box ul {
+			width: 100%;
+			height: 100%;
+
+		}
+
+		.box ul li {
+			width: 200px;
+			height: 200px;
+			display: inline-block;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			position: relative;
+			perspective: 300;
+
+		}
+
+		.p-box{
+   			position: absolute;
+   			top: 0;
+   			right: 0;
+   			bottom: 0;
+   			left: 0;
+   			transform-style: preserve-3d;
+   			transform-origin: 50% 50% -100px;
+   			animation: 0.2s ease-out forwards;
+		}
+
+		.pic,
+		.txt{
+    		position: absolute;
+    		top: 0;
+    		right: 0;
+    		bottom: 0;
+    		left: 0;
+  		}
+
+  		.pic {z-index: 1;}
+		
+		.txt {
+			width: 200px;
+			height: 200px;
+			color: #fff;
+			font-size: 20px;
+			line-height: 200px;
+			background-color: #000;
+    		text-align:center;
+
+		}
+
+		/*左*/
+		.leftOut .txt,
+		.leftIn .txt {
+			transform-origin:50% 50% -100px;
+			transform: rotateY(-90deg);
+		}
+
+		 @-webkit-keyframes leftOut{
+          
+          100% {
+				transform: rotateY(90deg);
+            }
+        }
+        @-webkit-keyframes leftIn{
+        	0% {
+                transform: rotateY(90deg) ;
+        	}
+           
+            100%{
+                transform: rotateY(0deg) ;
+            }
+        }
+
+		
+		.leftIn .p-box{
+		          animation-name: leftIn;
+		}
+		.leftOut .p-box{
+		          animation-name: leftOut;
+		}
+
+		/*右*/
+
+		.rightOut .txt,
+		.rightIn .txt {
+			transform-origin:50% 50% -100px;
+			transform: rotateY(90deg);
+		}
+
+		 @-webkit-keyframes rightOut{
+          
+          100% {
+				transform: rotateY(-90deg);
+            }
+        }
+        @-webkit-keyframes rightIn{
+        	0% {
+                transform: rotateY(-90deg) ;
+        	}
+           
+            100%{
+                transform: rotateY(0deg) ;
+            }
+        }
+
+		
+		.rightIn .p-box{
+		          animation-name: rightIn;
+		          /*animation-play-state: running;*/
+		}
+		.rightOut .p-box{
+		          animation-name: rightOut;
+		}
+
+		/*上*/
+		.topOut .txt,
+		.topIn .txt {
+			transform-origin:50% 50% -100px;
+			transform: rotateX(90deg);
+		}
+
+		 @-webkit-keyframes topOut{
+          
+          100% {
+				transform: rotateX(-90deg);
+            }
+        }
+        @-webkit-keyframes topIn{
+        	0% {
+                transform: rotateX(-90deg) ;
+        	}
+           
+            100%{
+                transform: rotateX(0deg) ;
+            }
+        }
+
+		
+		.topIn .p-box{
+		          animation-name: topIn;
+		}
+		.topOut .p-box{
+		          animation-name: topOut;
+		}
+
+		/*下*/
+
+		.bottomOut .txt,
+		.bottomIn .txt {
+			transform-origin:50% 50% -100px;
+			transform: rotateX(-90deg);
+		}
+
+		 @-webkit-keyframes bottomOut{
+          
+          100% {
+				transform: rotateX(90deg);
+            }
+        }
+        @-webkit-keyframes bottomIn{
+        	0% {
+                transform: rotateX(90deg) ;
+        	}
+           
+            100%{
+                transform: rotateX(0deg) ;
+            }
+        }
+
+		
+		.bottomIn .p-box{
+		          animation-name: bottomIn;
+		}
+		.bottomOut .p-box{
+		          animation-name: bottomOut;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/1.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/2.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/3.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/4.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/5.jpg" alt=""></div>
+				<div class="txt"> <h3>picture</h3></div
+					</div>>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/6.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/7.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/8.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/9.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/10.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"><img src="images/11.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+			<li>
+				<div class="p-box">
+				<div class="pic"> <img src="images/12.jpg" alt=""></div>
+				<div class="txt"><h3>picture</h3></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
+
+<script src="js/jquery-1.12.3.min.js"></script>
+<script>
+	// 鼠标进入时 进入的li中的图片当前显示的图片执行out 标题执行in
+	$(".box ul li").mouseenter(function (event) {
+		$(this).removeClass();
+		var e = event || window.event;
+		var that = $(this);
+		// console.log(getDir(e,that));
+		var c = addClass(e,that);
+		// console.log(c);
+		$(this).addClass(c+'Out');
+		
+	})
+	// 鼠标移除
+	$(".box ul li").mouseleave(function (event) {
+		$(this).removeClass();
+		var e = event || window.event;
+		var that = $(this);
+		// console.log(getDir(e,that));
+		var c = addClass(e,that);
+		// console.log(c);
+		$(this).addClass(c+'In');
+		
+		
+	})
+
+	// 判断鼠标进入方向
+	function getDir(e,obj) {
+		var w = obj.width();
+		var h = obj.height();
+		var l = obj.offset().left;
+		var t = obj.offset().top;
+        var x = e.pageX - l - w / 2 ;
+        var y = e.pageY - t - h / 2 ;
+        // 获取弧度
+        d=(Math.round(((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90)+3) % 4;
+
+    	return d;
+};
+
+	// 获取方向
+	function addClass(e, obj) {
+    var dir = getDir(e,obj);
+    switch (dir) {
+        case 0:
+            return 'top'; 
+            break;
+        case 1:
+            return  'right'; 
+            break;
+        case 2:
+            return 'bottom';
+            break;
+        case 3:
+            return  'left'; 
+            break;
+    }
+};
+</script>

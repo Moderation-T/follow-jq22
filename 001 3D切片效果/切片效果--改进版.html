@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width:796px;
+            height: 340px;
+            perspective:1000px;
+            margin:100px auto;
+            border: 1px solid #666;
+            transform-style:preserve-3d;
+        }
+        section>div{
+            width:159.2px;
+            height: 340px;
+            float: left;
+            transform-style:preserve-3d;
+        }
+        section>div p{
+            position: absolute;
+            width:100%;
+            height: 100%;
+        }
+        section>div p:nth-child(1){
+            z-index:2;
+        }
+        section>div.cur p:nth-child(1){
+            transform-origin:50% 50% -170px;
+            transform:rotateX(0deg);
+            animation:donghua1 1s ease 0s forwards;
+        }
+        section>div.cur p:nth-child(2){
+            transform-origin:50% 50% -170px;
+            transform:rotateX(90deg);
+            animation:donghua2 1s ease 0s forwards;
+        }
+        @-webkit-keyframes donghua1{
+            from{
+                transform:rotateX(0deg);
+            }
+            to{
+                transform:rotateX(-90deg);
+            }
+        }
+        @-webkit-keyframes donghua2{
+            from{
+                transform:rotateX(90deg);
+            }
+            to{
+                transform:rotateX(0deg);
+            }
+        }
+
+         section>div.a p:nth-child(1){
+            transform-origin:50% 50% -170px;
+            transform:rotateX(0deg);
+            animation:donghua3 1s ease 0s forwards;
+        }
+        section>div.a p:nth-child(2){
+            transform-origin:50% 50% -170px;
+            transform:rotateX(90deg);
+            animation:donghua4 1s ease 0s forwards;
+        }
+        @-webkit-keyframes donghua3{
+            from{
+                transform:rotateX(0deg);
+            }
+            to{
+                transform:rotateX(90deg);
+            }
+        }
+        @-webkit-keyframes donghua4{
+            from{
+                transform:rotateX(-90deg);
+            }
+            to{
+                transform:rotateX(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button>下一张</button>
+    <button>上一张</button>
+    <section>
+        <div><p></p><p></p></div>
+        <div><p></p><p></p></div>
+        <div><p></p><p></p></div>
+        <div><p></p><p></p></div>
+        <div><p></p><p></p></div>
+    </section>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+    // 初始化默认的背景
+    $("section>div p:nth-child(1)").css({"background-image":"url(images/1.jpg)"})
+    $("section>div p:nth-child(2)").css({"background-image":"url(images/2.jpg)"})
+    // $("section>div p:nth-child(3)").css({"background-image":"url(images/4.jpg)"})
+    // 渲染整张图片
+    $("section>div").each(function(index){
+        $(this).find("p").css("background-position",-index * 159.2 + "px 0px");
+    });
+    // 信号量
+    // 当前的图片是谁
+    var num = 1;
+    // 当前谁开始做动画了
+    var idx = 0;
+    // 函数节流
+    var lock = true;
+    // 绑定事件
+    $("button:eq(0)").click(function() {  
+        if(!lock) return;
+        lock = false;
+         if( num == 4){
+            num = 0;
+        }else if( num > 4){
+            num = 1;
+        };
+        $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num+1)+".jpg)"})
+
+
+        num++;
+         if( num > 4){
+            num = 1;
+        };
+
+       var timer = setInterval(function(){
+            $("section>div").eq(idx).addClass("cur");
+            idx++;
+            console.log(idx);
+        },200);
+        setTimeout(function(){
+            clearInterval(timer);
+            idx = 0;
+                // 需要将动画效果去掉，再次添加效果的时候有动画
+             $("section>div").removeClass('cur');
+             $("section>div p:nth-child(1)").css({"background-image":"url(images/"+num+".jpg)"});
+             // if( num == 4){
+             //    num = 0;
+             //    $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num+1)+".jpg)"});
+             // }else{
+             //    $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num+1)+".jpg)"});
+             // };
+
+             lock = true;
+        },2000);
+    });
+
+
+        // 
+     $("button:eq(1)").click(function() {
+        if(!lock) return;
+        lock = false;
+        if( num == 1){
+            num = 5;
+        }else if( num < 1){
+            num = 4;
+        };
+          $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num-1)+".jpg)"})
+
+          
+        num--;
+        if( num < 1){
+            num = 4;
+        };
+       var timer = setInterval(function(){
+            $("section>div").eq(idx).addClass("a");
+            idx++;
+            console.log(idx);
+        },200);
+        setTimeout(function(){
+            clearInterval(timer);
+            idx = 0;
+                // 需要将动画效果去掉，再次添加效果的时候有动画
+             $("section>div").removeClass('a');
+             $("section>div p:nth-child(1)").css({"background-image":"url(images/"+num+".jpg)"});
+             // if( num == 1){
+             //    num = 5;
+             //    $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num-1)+".jpg)"});
+             // }else{
+             //    $("section>div p:nth-child(2)").css({"background-image":"url(images/"+(num-1)+".jpg)"});
+             // };
+
+             lock = true;
+        },2000);
+    });
+</script>
